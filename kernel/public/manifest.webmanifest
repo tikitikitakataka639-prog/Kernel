@@ -1,0 +1,16 @@
+{
+  "name": "K.E.R.N.E.L.",
+  "short_name": "K.E.R.N.E.L.",
+  "description": "KERNEL AI ENGINE: análisis de cuentas sospechosas de Threads, evidencias y documentación de denuncias.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#22c55e",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "64x64", "type": "image/png" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

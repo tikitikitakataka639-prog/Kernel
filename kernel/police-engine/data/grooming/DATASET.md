@@ -1,0 +1,35 @@
+# Dataset sintético grooming ES/EN
+
+{
+  "name": "kernel-grooming-synthetic-v2",
+  "license": "CC0-1.0",
+  "notes": [
+    "Synthetic only. No private chats. No sexual content involving minors.",
+    "Includes hard negatives and hard positives; synthetic examples do not represent prevalence.",
+    "Group split by canonical conversation ID; paraphrase variants cannot cross train/val/test.",
+    "Not a substitute for validation on real moderated conversations.",
+    "Does not include PAN12 or other restricted datasets.",
+    "Labels are for experimental safety tooling, not legal findings."
+  ],
+  "labels": [
+    "benign",
+    "grooming_risk"
+  ],
+  "languages": [
+    "es",
+    "en",
+    "mixed"
+  ],
+  "counts": {
+    "train": 46,
+    "val": 11,
+    "test": 10,
+    "total": 67,
+    "ambiguous_challenge": 4
+  },
+  "difficulty_counts": {
+    "core": 35,
+    "hard_negative": 16,
+    "hard_positive": 16
+  }
+}

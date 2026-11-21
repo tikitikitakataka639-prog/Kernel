@@ -1,0 +1,120 @@
+{
+  "model_id": "grooming-xlm-roberta-es-en",
+  "backend": "sklearn_tfidf_v1",
+  "status": "EXPERIMENTAL",
+  "base_model_intended": "FacebookAI/xlm-roberta-base",
+  "base_license": "MIT",
+  "dataset": "kernel-grooming-synthetic-v1",
+  "dataset_license": "CC0-1.0",
+  "disclaimer": [
+    "Métricas calculadas solo sobre texto sintético.",
+    "No constituyen validación sobre conversaciones reales.",
+    "El score no es probabilidad de delito ni prueba jurídica."
+  ],
+  "val": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "auprc": 1.0,
+    "confusion_matrix": {
+      "labels": [
+        "benign",
+        "grooming_risk"
+      ],
+      "matrix": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    "false_positives": 0,
+    "false_negatives": 0,
+    "n": 6,
+    "by_language": {
+      "en": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      },
+      "es": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      },
+      "mixed": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      }
+    }
+  },
+  "test": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "auprc": 1.0,
+    "confusion_matrix": {
+      "labels": [
+        "benign",
+        "grooming_risk"
+      ],
+      "matrix": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ]
+    },
+    "false_positives": 0,
+    "false_negatives": 0,
+    "n": 6,
+    "by_language": {
+      "en": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      },
+      "es": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      },
+      "mixed": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "auprc": 1.0,
+        "n": 2
+      }
+    }
+  },
+  "train_size": 23,
+  "interpretation": {
+    "artifact_training_data": "kernel-grooming-synthetic-v1",
+    "evaluated_examples": {
+      "validation": 6,
+      "test": 6
+    },
+    "warning": "Las métricas 1.0 proceden de solo 6 ejemplos por split sintético; no son estimaciones fiables de rendimiento real ni se deben presentar como validación real.",
+    "artifact_retrained_in_runtime_0_2_0": false
+  }
+}

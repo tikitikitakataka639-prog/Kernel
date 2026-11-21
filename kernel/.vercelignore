@@ -1,0 +1,15 @@
+# No subir cachés ni entornos locales dentro del despliegue CLI.
+node_modules
+.venv
+venv
+__pycache__
+.pytest_cache
+.wrangler
+.output
+.nitro
+dist
+dist-ssr
+*.log
+
+# Servicios/modelos locales: no se ejecutan como procesos persistentes en Vercel.
+police-engine/

@@ -1,0 +1,71 @@
+{
+  "dataset": "kernel-grooming-synthetic-v2",
+  "split_integrity": "PASS",
+  "splits": {
+    "train": {
+      "n": 46,
+      "labels": {
+        "benign": 25,
+        "grooming_risk": 21
+      },
+      "languages": {
+        "en": 18,
+        "es": 20,
+        "mixed": 8
+      },
+      "difficulties": {
+        "core": 25,
+        "hard_negative": 12,
+        "hard_positive": 9
+      }
+    },
+    "val": {
+      "n": 11,
+      "labels": {
+        "benign": 5,
+        "grooming_risk": 6
+      },
+      "languages": {
+        "es": 4,
+        "en": 5,
+        "mixed": 2
+      },
+      "difficulties": {
+        "core": 7,
+        "hard_positive": 3,
+        "hard_negative": 1
+      }
+    },
+    "test": {
+      "n": 10,
+      "labels": {
+        "benign": 5,
+        "grooming_risk": 5
+      },
+      "languages": {
+        "es": 4,
+        "mixed": 2,
+        "en": 4
+      },
+      "difficulties": {
+        "core": 3,
+        "hard_negative": 3,
+        "hard_positive": 4
+      }
+    }
+  },
+  "independent_holdout": {
+    "n": 8,
+    "disjoint_from_primary": true
+  },
+  "ambiguous_challenge": {
+    "n": 4,
+    "excluded_from_training": true,
+    "labels_valid": true
+  },
+  "limitations": [
+    "Auditoría estructural; no evalúa representatividad ni eficacia del detector.",
+    "El corpus es sintético y no acredita rendimiento en conversaciones reales."
+  ],
+  "errors": []
+}

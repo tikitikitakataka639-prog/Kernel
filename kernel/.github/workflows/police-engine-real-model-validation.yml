@@ -1,0 +1,70 @@
+name: Police Engine - Validación con modelos reales
+
+on:
+  push:
+    branches:
+      - fix/phase2-audit-corrections
+      - integration/kernel-consolidation-2026-11-20
+    paths:
+      - police-engine/src/detectors/horizon.py
+      - police-engine/src/detectors/mrbert_legal.py
+      - police-engine/tests/test_real_model_smoke.py
+      - police-engine/tests/test_real_api_smoke.py
+      - src/lib/police/run-police-suite.live.test.ts
+      - police-engine/requirements.txt
+      - .github/workflows/police-engine-real-model-validation.yml
+  workflow_dispatch:
+
+jobs:
+  real-model-inference:
+    name: Inferencia CPU con pesos oficiales
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      KERNEL_POLICE_REAL_MODEL_TESTS: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      KERNEL_POLICE_HOME: /home/runner/.kernel-police-models
+      KERNEL_POLICE_URL: http://127.0.0.1:8787
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v7
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: police-engine/requirements.txt
+      - name: Instalar PyTorch CPU
+        run: python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.6"
+      - name: Instalar dependencias
+        working-directory: police-engine
+        run: python -m pip install -r requirements.txt pytest
+      - name: Ejecutar inferencia real de Horizon y MrBERT
+        working-directory: police-engine
+        run: python -m pytest tests/test_horizon_labels.py tests/test_real_model_smoke.py tests/test_real_api_smoke.py -v
+      - name: Probar recorrido real KERNEL → API → exportación
+        uses: oven-sh/setup-bun@v2
+      - name: Instalar dependencias del frontend
+        run: bun install
+      - name: Ejecutar recorrido integral con servidor y modelos reales
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd police-engine
+          python src/server.py > /tmp/kernel-police-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          cd ..
+          READY=0
+          for attempt in $(seq 1 60); do
+            if curl -fsS -H "Origin: https://project-kernel-release-1-0-0.lovable.app" http://127.0.0.1:8787/health >/dev/null; then
+              READY=1
+              break
+            fi
+            sleep 1
+          done
+          if [ "$READY" -ne 1 ]; then
+            cat /tmp/kernel-police-server.log
+            exit 1
+          fi
+          bun test src/lib/police/run-police-suite.live.test.ts

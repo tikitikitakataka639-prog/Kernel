@@ -1,0 +1,30 @@
+KERNEL 0.2.13 — INFORME DE VALIDACIÓN
+Fecha: 21 de noviembre de 2026
+
+COMPROBACIONES EJECUTADAS
+- Vercel preflight: APROBADO.
+- Sintaxis TypeScript/TSX: 141 archivos analizados; 0 errores de parseo.
+- Police Engine Python: 45 aprobados, 5 omitidos, 9 subtests aprobados.
+- Integridad del paquete ZIP: APROBADA (`ZipFile.testzip()` sin errores; 247 archivos).
+
+CAMBIOS INCLUIDOS EN ESTA REVISIÓN
+- WebGPU se solicita automáticamente desde el componente raíz al entrar en KERNEL.
+- La inicialización solicita primero el adaptador de alto rendimiento y, si no hay adaptador, prueba la selección predeterminada del navegador.
+- Se crea un GPUDevice real para verificar la API.
+- La pantalla inicial y Ajustes permiten reintentar la inicialización si falla.
+- Chat General restaura Qwen desde caché o inicia la descarga al entrar en la ruta.
+- El perfil rápido solo se marca acelerado cuando Wllama confirma WebGPU y se cargan capas en GPU.
+- Se documenta que el navegador/Windows puede seleccionar la GPU integrada pese a `powerPreference: high-performance`.
+
+NO VERIFICADO EN ESTE ENTORNO
+- Build completo Vite/TanStack: no ejecutado; Bun y node_modules no están instalados en este entorno.
+- `tsc --noEmit`: no ejecutado por falta de dependencias y declaraciones instaladas.
+- Despliegue Preview de Vercel: no ejecutado.
+- Prueba real de inferencia WebGPU y medición de tokens/s: no ejecutada; requiere navegador y GPU del usuario.
+
+ADVERTENCIAS CONOCIDAS
+- La suite Python emite 20 avisos InconsistentVersionWarning porque el checkpoint Grooming fue serializado con scikit-learn 1.9.1 y se está cargando con 1.8.0. Los tests pasan, pero se debe alinear la versión antes de distribuir ese checkpoint como producción.
+- 5 tests Python se omiten por sus condiciones/requisitos no disponibles.
+- La inicialización del dispositivo WebGPU en KERNEL comprueba la API. La confirmación de inferencia acelerada es el backend del modelo `WebGPU · adaptador · N capas` tras cargar el GGUF.
+
+No se afirma que el build o la inferencia GPU estén certificados hasta ejecutar esas pruebas en una Preview real.

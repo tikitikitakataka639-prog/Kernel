@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "status": "annotation_schema_not_legal_classification",
+  "categories": [
+    {"code": "G01", "key": "vinculo_exclusivo", "description": "Halagos de excepcionalidad o vínculo exclusivo usados para desplazar otras relaciones.", "severity": "contextual"},
+    {"code": "G02", "key": "secreto_u_ocultacion", "description": "Petición de ocultar la relación o las comunicaciones a personas de confianza.", "severity": "high"},
+    {"code": "G03", "key": "aislamiento", "description": "Desautorización, separación o desconfianza inducida respecto del entorno de apoyo.", "severity": "high"},
+    {"code": "G04", "key": "obtencion_datos_privados", "description": "Sondeo de edad, ubicación, horarios o disponibilidad privada; el contexto determina su relevancia.", "severity": "contextual"},
+    {"code": "G05", "key": "migracion_canal_borrado", "description": "Traslado a canales menos visibles o eliminación deliberada de rastros en un contexto de ocultación.", "severity": "high"},
+    {"code": "G06", "key": "regalos_dependencia", "description": "Regalos, favores o recompensas condicionadas a obediencia, secreto o acceso.", "severity": "contextual"},
+    {"code": "G07", "key": "coaccion_amenaza", "description": "Presión, culpa, amenaza o chantaje para obtener obediencia o silencio.", "severity": "critical"},
+    {"code": "G08", "key": "limites_intimos", "description": "Petición de imágenes privadas o presión para transgredir límites íntimos.", "severity": "critical"},
+    {"code": "G09", "key": "encuentro_clandestino", "description": "Propuesta de encuentro oculto respecto de familiares o personas de confianza.", "severity": "critical"}
+  ],
+  "annotation_rules": [
+    "Anotar la conducta observada en el mensaje, no la identidad ni la intención supuesta de la persona.",
+    "Registrar por separado texto literal, interlocutor explícito, turno y contexto.",
+    "Usar review_required cuando el contexto sea insuficiente o existan explicaciones plausibles incompatibles.",
+    "No convertir una pregunta de edad, halago, secreto o mención de una plataforma en grooming por sí sola.",
+    "Los códigos describen señales para revisión humana; no son criterios jurídicos ni hechos probados."
+  ]
+}

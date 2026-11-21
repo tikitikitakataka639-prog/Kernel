@@ -1,0 +1,11 @@
+KERNEL 0.2.13 — WEBGPU STARTUP
+
+1. Importa este ZIP en Vercel con Root Directory ./
+2. No hace falta configurar KERNEL_AI_BASE_URL para Chat General ni Police Mode conversacional.
+3. Al entrar en KERNEL se inicializa WebGPU automáticamente; si falla, la pantalla inicial muestra el motivo y permite reintentar. En el inicio aparece el estado real del adaptador.
+4. Al entrar en CHAT GENERAL, Qwen3.5-2B se restaura desde la caché o se descarga automáticamente la primera vez (aprox. 1,27 GB). El progreso se muestra en la propia pantalla.
+5. Para confirmar aceleración real, el estado debe incluir `WebGPU · nombre de GPU · N capas`. `WEBGPU INICIALIZADO` por sí solo confirma el dispositivo de navegador, no el offload del modelo.
+
+En Opera para Windows, si no encuentra NVIDIA: activa aceleración gráfica, reinicia, abre opera://gpu y asigna opera.exe a Alto rendimiento / GTX 1050 Ti en Configuración de Windows → Pantalla → Gráficos.
+
+El límite de 10 segundos sigue siendo un objetivo medido, no una garantía universal. La inferencia depende de la GPU, los drivers, la memoria y el navegador.
